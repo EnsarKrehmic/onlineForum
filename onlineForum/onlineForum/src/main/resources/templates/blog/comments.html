@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${post.title}">Post Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .comments-section {
+            margin-top: 30px;
+        }
+
+        .comment-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .comment-item p {
+            margin: 0;
+        }
+
+        .comment-item strong {
+            color: #007bff;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            resize: none;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h1 th:text="${post.title}">Post Title</h1>
+<p th:text="${post.content}">Post content...</p>
+
+<!-- Prikazivanje komentara -->
+<div class="comments-section">
+    <h3>Komentari</h3>
+    <div th:each="comment : ${post.comments}">
+        <div class="comment-item">
+            <p><strong th:text="${comment.user.name}">User Name</strong>: <span th:text="${comment.text}">Comment content...</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- Forma za unos novog komentara -->
+<h3>Leave a comment</h3>
+<form th:action="@{'/' + ${post.url} + '/comments'}" th:object="${comment}" method="post">
+    <textarea th:field="*{text}" placeholder="Napišite Vaš komentar..." required></textarea>
+
+    <!-- Ako postoji greška pri validaciji, prikaži je ispod forme -->
+    <div th:if="${#fields.hasErrors('text')}" class="error-message">
+        <p th:each="err : ${#fields.errors('text')}" th:text="${err}"></p>
+    </div>
+    <button type="submit">Postavi komentar</button>
+</form>
+</body>
+</html>

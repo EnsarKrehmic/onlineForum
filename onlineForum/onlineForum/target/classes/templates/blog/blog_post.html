@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<div th:replace="blog/header :: header"></div>
+<body>
+<div th:replace="blog/header :: navbar"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <h2 th:text="${post.title}"></h2>
+      <hr/>
+      <h4 th:text="${post.shortDescription}"></h4>
+      <hr/>
+      <div th:utext="${post.content}"></div>
+      <hr/>
+
+      <h2>Komentari:</h2>
+      <div th:each="comment : ${post.comments}">
+        <div class="border border-dark col-md-12">
+          <p><b>Korisničko ime: </b> <span th:text="${comment.name}"></span><br>
+            <b>Datum: </b><span th:text="${#temporals.format(comment.createdOn, 'dd MMMM YYYY')}"></span><br>
+            <b>Komentar: </b><span th:text="${comment.content}">Ostavite Vaš komentar:</span></p>
+        </div>
+        <br>
+      </div>
+
+      <div class="card">
+        <div class="card-header border border-secondary">
+          <h4>Unesite sadržaj komentara:</h4>
+        </div>
+        <div class="card-body">
+          <form role="form" method="post"
+                th:action="@{/{postUrl}/comments(postUrl=${post.url})}"
+                th:object="${comment}">
+            <div class="row">
+              <div>
+                <input class="form-control"
+                       id="name"
+                       name="name"
+                       placeholder="Unesite ime"
+                       th:field="*{name}"
+                       type="text">
+                <p th:if="${#fields.hasErrors('name')}"
+                   th:errors="*{name}"
+                   class="text-danger"></p>
+              </div>
+              <div>
+                <input class="form-control"
+                       id="email"
+                       name="email"
+                       placeholder="Unesite e-mail"
+                       th:field="*{email}"
+                       type="text">
+                <p th:if="${#fields.hasErrors('email')}"
+                   th:errors="*{email}"
+                   class="text-danger"></p>
+              </div>
+              <div>
+                    <textarea class="form-control"
+                              id="content"
+                              name="content"
+                              placeholder="Unesite sadržaj komentara"
+                              th:field="*{content}"
+                              rows="4">
+                    </textarea>
+                <p th:if="${#fields.hasErrors('content')}"
+                   th:errors="*{content}"
+                   class="text-danger"></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <button class="btn btn-primary" type="submit">
+                  Postavi komentar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-3">
+      <div th:replace="blog/search :: search"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

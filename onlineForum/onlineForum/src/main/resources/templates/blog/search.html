@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div class="card" th:fragment="search">
+  <div class="card-header">
+    <h3 class="text-center">Pretražite postove</h3>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <form class="form-inline" th:action="@{/page/search}">
+        <div class="input-group">
+          <input class="form-control" name="query" placeholder="Unesite ključnu riječ" />
+          <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Pretraži</button>
+              </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

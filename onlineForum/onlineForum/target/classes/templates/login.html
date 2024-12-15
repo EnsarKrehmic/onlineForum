@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prijava</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+      margin-top: 50px;
+      max-width: 600px;
+    }
+
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border: none;
+    }
+
+    .card-header {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .form-control {
+      border-radius: 8px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background-color: #28a745;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .btn-primary:hover {
+      background-color: #218838;
+    }
+
+    .text-danger {
+      font-size: 0.9em;
+    }
+
+    span a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    span a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Home page</a>
+  </div>
+</nav>
+<div class="container">
+  <div th:if="${param.error}">
+    <div class="alert alert-danger">Neispravan e-mail ili lozinka!</div>
+  </div>
+  <div th:if="${param.logout}">
+    <div class="alert alert-success">Uspješno ste se odjavili!</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Forma za prijavu</h2>
+    </div>
+    <div class="card-body">
+      <form th:action="@{/login}" method="post" class="form-horizontal">
+        <div class="form-group mb-3">
+          <label for="username">E-mail</label>
+          <input type="text" id="username" name="username" class="form-control" placeholder="Unesite e-mail" required>
+        </div>
+        <div class="form-group mb-3">
+          <label for="password">Lozinka</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Unesite lozinku" required>
+        </div>
+        <div class="form-group mb-3">
+          <button type="submit" class="btn btn-primary">Prijava</button>
+        </div>
+        <div class="text-center">
+          <span>Nemate profil? <a href="/register">Kreirajte novi!</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
