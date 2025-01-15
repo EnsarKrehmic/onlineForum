@@ -47,12 +47,9 @@ Treba razviti cijelu web aplikaciju prema zadanim instrukcijama koristeći razvo
 - Sigurnost: Pravilna implementacija autentifikacije i autorizacije korisnika (10%).
 
 ### Napomene:
-- Slobodni ste koristiti Maven ili Gradle project manager.
-- Trebate se pridržavati MVC (Model-View-Controller) arhitekture projekta.
-- Ukoliko želiti možete koristiti i neki razvojni okvir za frontend (frontend nike fokus ovog projekta i nosi manje bodova. Funkcionalnost i backend se prvi ocjenjuju).
-- Zadaća 1 se radi grupno (parovi od po 2 studenta). Za grupisanje se dogovarate sa asistenticom.
-- Studenti koji obnavljaju predmet rade samostalno.
-- Rok za izradu projekta se NE MOŽE produžiti (sem u vanrednim situacijama).
+- Moguće koristiti Maven ili Gradle project manager.
+- Potrebno je pridržavati se MVC (Model-View-Controller) arhitekture projekta.
+- Po želji koristiti i neki razvojni okvir za frontend.
 <hr>
 
 # Online Forum Aplikacija
